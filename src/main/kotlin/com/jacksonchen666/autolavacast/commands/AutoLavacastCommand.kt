@@ -61,7 +61,7 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
         println(watchBlock.location)
         println("Place block:")
         println(toBeReplacedWithWater.location)
-        WaterPlace(watchBlock, toBeReplacedWithWater).runTaskTimer(plugin, 20L, 20L)
+        WaterPlace(watchBlock, toBeReplacedWithWater, plugin).runTaskTimer(plugin, 20L, 20L)
         return true
     }
 
