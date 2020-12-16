@@ -1,9 +1,8 @@
 package com.jacksonchen666.autolavacast.commands
 
 import com.jacksonchen666.autolavacast.ChatColors
+import com.jacksonchen666.autolavacast.processor.TickPlace
 import com.jacksonchen666.autolavacast.processor.getBlocksFromPlayerToGround
-import org.apache.commons.lang.mutable.Mutable
-import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -30,11 +29,7 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
             return false
         }
         val blocks: MutableList<Block> = getBlocksFromPlayerToGround(commandSender).asReversed()
-        for (i in blocks) {
-            i.type = Material.COBBLESTONE
-        }
-        blocks.first().type = Material.LAVA
-        commandSender.sendMessage("Done")
+        TickPlace(commandSender, blocks).runTaskTimer(plugin, 1L, 1L)
         return true
     }
 

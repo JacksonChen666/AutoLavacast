@@ -20,7 +20,7 @@ fun getBlocksFromPlayerToGround(player: Player): MutableList<Block> {
     var currentLocation = Location(
         player.world,
         player.location.x,
-        player.location.y - 1,
+        player.location.y - 3,
         player.location.z
     )
     var goDown = false
