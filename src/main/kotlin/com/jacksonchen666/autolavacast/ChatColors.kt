@@ -1,4 +1,4 @@
-package com.jacksonchen666.template
+package com.jacksonchen666.autolavacast
 
 import org.bukkit.ChatColor
 

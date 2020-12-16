@@ -3,7 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
-group 'com.jacksonchen666.template'
+group 'com.jacksonchen666.autolavacast'
 version '1.0.0'
 
 import org.apache.tools.ant.filters.*

@@ -1,19 +1,16 @@
-package com.jacksonchen666.template
+package com.jacksonchen666.autolavacast
 
 import org.bukkit.plugin.java.JavaPlugin
-import org.bukkit.entity.Player
-import com.jacksonchen666.template.ChatColors
-import com.jacksonchen666.template.commands.Template
-import org.bukkit.event.player.PlayerLoginEvent
+import com.jacksonchen666.autolavacast.commands.AutoLavacastCommand
 import java.io.File
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.IOException
 import org.bukkit.configuration.InvalidConfigurationException
 
-class Template : JavaPlugin() {
+class AutoLavacast : JavaPlugin() {
     override fun onEnable() {
         saveDefaultConfig()
-        Template(this)
+        AutoLavacastCommand(this)
         server.pluginManager.registerEvents(Listener(), this)
     }
 

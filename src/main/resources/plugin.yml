@@ -1,9 +1,9 @@
 name: @plugin.name@
-main: com.jacksonchen666.template.Template
+main: com.jacksonchen666.autolavacast.AutoLavacast
 author: JacksonChen666
 api-version: 1.16
 version: @plugin.version@
-description: A template plugin. The creator forgot to change this.
+description: Creates a lavacast on your command.
 
 commands:
   template:
