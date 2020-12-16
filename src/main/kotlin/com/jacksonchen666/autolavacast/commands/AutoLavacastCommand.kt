@@ -1,6 +1,10 @@
 package com.jacksonchen666.autolavacast.commands
 
 import com.jacksonchen666.autolavacast.ChatColors
+import com.jacksonchen666.autolavacast.processor.getBlocksFromPlayerToGround
+import org.apache.commons.lang.mutable.Mutable
+import org.bukkit.Material
+import org.bukkit.block.Block
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -25,12 +29,17 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
             )
             return false
         }
-        commandSender.sendMessage("This is a autolavacast command. This has nothing special.")
+        val blocks: MutableList<Block> = getBlocksFromPlayerToGround(commandSender).asReversed()
+        for (i in blocks) {
+            i.type = Material.COBBLESTONE
+        }
+        blocks.first().type = Material.LAVA
+        commandSender.sendMessage("Done")
         return true
     }
 
     companion object {
-        const val commandName = "autolavacast"
+        const val commandName = "lavacast"
     }
 
     init {

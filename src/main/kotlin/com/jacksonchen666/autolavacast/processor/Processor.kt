@@ -17,12 +17,32 @@ fun getBlocksFromPlayerToGround(player: Player): MutableList<Block> {
         BlockFace.SOUTH -> 1
         else -> 0
     }
-    var currentLocation: Location = player.location
+    var currentLocation = Location(
+        player.world,
+        player.location.x,
+        player.location.y - 1,
+        player.location.z
+    )
     var goDown = false
     val blocks: MutableList<Block> = mutableListOf()
     do { // do not check condition on first loop
         blocks.add(currentLocation.block)
-        currentLocation = Location(player.world, currentLocation.x + x, if (goDown) currentLocation.y - 1 else currentLocation.y, currentLocation.z + z)
+        if (goDown) {
+            currentLocation = Location(
+                player.world,
+                currentLocation.x + x,
+                currentLocation.y,
+                currentLocation.z + z
+            )
+        }
+        else {
+            currentLocation = Location(
+                player.world,
+                currentLocation.x,
+                currentLocation.y - 1,
+                currentLocation.z
+            )
+        }
         goDown = !goDown
     } while (blocks.last().type == Material.AIR)
     return blocks

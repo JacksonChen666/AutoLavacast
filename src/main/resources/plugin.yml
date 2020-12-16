@@ -6,13 +6,5 @@ version: @plugin.version@
 description: Creates a lavacast on your command.
 
 commands:
-  template:
+  lavacast:
     description: A template command
-
-permissions:
-  Template:
-    default: not op
-    children:
-      Template.Template: true
-  Template.Template:
-    description: A template permission
