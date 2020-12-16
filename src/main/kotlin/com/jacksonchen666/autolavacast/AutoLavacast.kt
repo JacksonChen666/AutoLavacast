@@ -11,7 +11,6 @@ class AutoLavacast : JavaPlugin() {
     override fun onEnable() {
         saveDefaultConfig()
         AutoLavacastCommand(this)
-        server.pluginManager.registerEvents(Listener(), this)
     }
 
     override fun saveDefaultConfig() { // Allows you to save your config file as from your plugin
