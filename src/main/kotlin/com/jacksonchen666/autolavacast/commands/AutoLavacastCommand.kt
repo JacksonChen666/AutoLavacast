@@ -14,7 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 
-class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
+abstract class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
     private fun getText(path: String): String {
         return plugin.config.getString(path)!!
     }
@@ -33,13 +33,7 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
         }
         val blocks: MutableList<Block> = getBlocksFromPlayerToGround(commandSender).asReversed()
         TickPlace(commandSender, blocks).runTaskTimer(plugin, 1L, 1L)
-        val topBlockLocation = blocks.last().location
-        val toBeReplacedWithWater = Location(
-            topBlockLocation.world,
-            topBlockLocation.x,
-            topBlockLocation.y + 2,
-            topBlockLocation.z
-        ).block
+        val toBeReplacedWithWater = blocks.last().location.getLocationRelative(y = 2.0).block // above lava source
         val x: Int = when (commandSender.facing) {
             BlockFace.EAST -> 1
             BlockFace.WEST -> -1
@@ -50,15 +44,16 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
             BlockFace.SOUTH -> 1
             else -> 0
         }
-        val watchBlockLocation = blocks.first().location // bottom
-        val watchBlock = Location(
-            watchBlockLocation.world,
-            watchBlockLocation.x + x,
-            watchBlockLocation.y,
-            watchBlockLocation.z + z,
-        ).block
+        val watchBlock = blocks.first().location.getLocationRelative(x = x.toDouble(), z = z.toDouble()).block // bottom
         WaterPlace(watchBlock, toBeReplacedWithWater, plugin).runTaskTimer(plugin, 20L, 20L)
         return true
+    }
+
+    private fun Location.getLocationRelative(x: Double = 0.0, y: Double = 0.0, z: Double = 0.0): Location {
+        this.x += x
+        this.y += y
+        this.z += z
+        return this
     }
 
     companion object {
