@@ -44,6 +44,6 @@ fun getBlocksFromPlayerToGround(player: Player): MutableList<Block> {
             )
         }
         goDown = !goDown
-    } while (blocks.last().type == Material.AIR)
+    } while (!blocks.last().type.isSolid)
     return blocks
 }

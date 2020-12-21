@@ -13,7 +13,7 @@ class TickPlace(private val player: Player, private val blocks: MutableList<Bloc
         count++
         when {
             count == blocks.size -> {
-                val location = blocks.last().location
+                val location = blocks.takeLast(3)[0].location
                 Location(player.world, location.x, location.y + 1, location.z).block.type = Material.LAVA
             }
             count > blocks.size -> {

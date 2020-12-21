@@ -14,7 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 
-abstract class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
+class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
     private fun getText(path: String): String {
         return plugin.config.getString(path)!!
     }
@@ -33,7 +33,7 @@ abstract class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExec
         }
         val blocks: MutableList<Block> = getBlocksFromPlayerToGround(commandSender).asReversed()
         TickPlace(commandSender, blocks).runTaskTimer(plugin, 1L, 1L)
-        val toBeReplacedWithWater = blocks.last().location.getLocationRelative(y = 2.0).block // above lava source
+        val toBeReplacedWithWater = blocks.last().location.getLocationRelative(y = 1.0).block
         val x: Int = when (commandSender.facing) {
             BlockFace.EAST -> 1
             BlockFace.WEST -> -1
