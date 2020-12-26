@@ -1,11 +1,11 @@
 package com.jacksonchen666.autolavacast
 
-import org.bukkit.plugin.java.JavaPlugin
 import com.jacksonchen666.autolavacast.commands.AutoLavacastCommand
-import java.io.File
-import org.bukkit.configuration.file.YamlConfiguration
-import java.io.IOException
 import org.bukkit.configuration.InvalidConfigurationException
+import org.bukkit.configuration.file.YamlConfiguration
+import org.bukkit.plugin.java.JavaPlugin
+import java.io.File
+import java.io.IOException
 
 class AutoLavacast : JavaPlugin() {
     override fun onEnable() {

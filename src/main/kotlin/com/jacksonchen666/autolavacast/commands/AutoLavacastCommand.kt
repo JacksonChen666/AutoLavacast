@@ -24,11 +24,7 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
             plugin.server.consoleSender.sendMessage(
                 ChatColors.color(
                     getText("errors.console_execution").replace(
-                        "{prefix}",
-                        getText("errors.error_prefix")
-                    )
-                )
-            )
+                        "{prefix}", getText("errors.error_prefix"))))
             return false
         }
         val blocks: MutableList<Block> = getBlocksFromPlayerToGround(commandSender).asReversed()
@@ -61,7 +57,6 @@ class AutoLavacastCommand(private val plugin: JavaPlugin) : CommandExecutor {
     }
 
     init {
-        Objects.requireNonNull(plugin.getCommand(commandName))!!
-            .setExecutor(this)
+        Objects.requireNonNull(plugin.getCommand(commandName))!!.setExecutor(this)
     }
 }
